@@ -8,6 +8,13 @@ Django SVG templatetag
 .. image:: https://travis-ci.org/Mediamoose/django-svg-templatetag.png?branch=master
     :target: https://travis-ci.org/Mediamoose/django-svg-templatetag
 
+.. image:: https://img.shields.io/codecov/c/github/Mediamoose/django-svg-templatetag.svg
+    :target: https://codecov.io/gh/Mediamoose/django-svg-templatetag
+
+.. image:: https://readthedocs.org/projects/django-svg-templatetag/badge/?version=latest
+    :target: https://django-svg-templatetag.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 Inject a SVG file into your Django template.
 
 Documentation

@@ -25,6 +25,7 @@ try:
             'DIRS': [],
             'APP_DIRS': True,
         }],
+        MIDDLEWARE_CLASSES=(),
     )
 
     try:

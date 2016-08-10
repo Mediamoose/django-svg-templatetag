@@ -7,9 +7,7 @@ test_django-svg-templatetag
 
 Tests for `django-svg-templatetag`.
 """
-
-from django.template import Context, Template
-from django.template.exceptions import TemplateSyntaxError
+from django.template import Context, Template, TemplateSyntaxError
 from django.test.testcases import TestCase
 
 from svg_templatetag.templatetags.svg import SvgNode

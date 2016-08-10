@@ -1,21 +1,44 @@
-# Config file for automatic testing at travis-ci.org
+env:
+- TOXENV=flake8
+
+- TOXENV=py27-django17
+- TOXENV=py27-django18
+- TOXENV=py27-django19
+- TOXENV=py27-django110
+
+- TOXENV=py33-django17
+- TOXENV=py33-django18
+
+- TOXENV=py34-django17
+- TOXENV=py34-django18
+- TOXENV=py34-django19
+- TOXENV=py34-django110
+
+- TOXENV=py35-django18
+- TOXENV=py35-django19
+- TOXENV=py35-django110
 
 language: python
 
-python:
-  - "3.5"
-  - "3.4"
-  - "3.3"
-  - "2.7"
+python: 3.5
 
 before_install:
   - pip install codecov
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -r requirements_test.txt
+install: pip install -U tox
 
-# command to run tests using coverage, e.g. python setup.py test
-script: coverage run --source svg_templatetag runtests.py
+script: tox -e ${TOXENV}
 
 after_success:
   - codecov
+
+deploy:
+  true:
+    condition: $TOXENV == py35-django110
+    repo: Mediamoose/django-svg-templatetag
+    tags: true
+  distributions: sdist bdist_wheel
+  password:
+    secure: bx6b2IhxkFqWWeiO2/HFFd4ZGytcxn3DgY5KwodM0W7/7I8TsDuvOUu8HIRqFRjCYHMm7iMoesNZhEbZax9GO3JFRI1DE3D1OBNKvRhUs576hvjztieGI+8X2c6SuRWyB0U6LMnoODtcfzktupZJ1dyWqB91lk7Jgmpe2mVd51iHfnyAA9a/JtdYMw/woacX8RyIlPxmHLYdrTsOoMY8qflpcRozyZdMRQsofEUtouRrMvLvSfYHFok3luVUBm9n9bXr/bEn2JPTAWFdhpbNplVi19luilmdHa46YfP8G+SkYAU3pOXntDvgiOi3LoH4gdvQR9qff9L84pZGSs8GuyVGjJ9RBNb3Pxtu5szLqwV6OtQEj9c8Rwl2EpAyZYCzsZczNxMdgrBLCLdhtImzBX/oTfAduljFcamoebKCwGrCynMqCnvnpIzSOFRavvzBLfsJmmvOItSNfjeHcZUgbSBI/g7jcqi7fq872MqOITR2Kbf1KefLxuBfTqg6ts4P0rf7oahSdI3+pS6W4KaMo0kqEgM97GR9jId3AVy2z85KUj5mOP2oE3YnzJGnpz8evsR7Zmb0Vud/4kQ5HH2IkFV7CC+bGi5Aqbce8vM+pgk+ILcrqF1r5fTwNseJrMjw7j/yKB8Nc8JPaIS4U1JaCKmU6XnjygxsYPI9GeVlC0o=
+  provider: pypi
+  user: mediamoose
