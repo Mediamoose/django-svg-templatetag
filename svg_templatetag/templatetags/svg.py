@@ -19,7 +19,8 @@ def get_svg(path, **kwargs):
     if fullpath is None:
         raise IOError('SVG file ({}) not found.'.format(fullpath))
 
-    content = open(fullpath, 'r').read()
+    with open(fullpath, 'r') as fd:
+        content = fd.read()
 
     return mark_safe(re.sub(r'(<svg[^>]*)', r'\1{}'.format(flatatt(kwargs)),
                             content, flags=re.MULTILINE))
