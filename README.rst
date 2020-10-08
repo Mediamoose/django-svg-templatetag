@@ -35,7 +35,7 @@ Then use it in a project::
     
     {% svg path [as varname] %}
    
-Examples:
+Examples::
 
     {% svg "myapp/icons/icon.svg" %}
     {% svg variable_with_path %}
